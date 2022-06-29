@@ -68,13 +68,11 @@ while True:
             player_win()
         else:
             player_win(winner)
-
     elif heel == SCISSORS:
         if face == ROCK:
             player_win()
         else:
             player_win(winner)
-
     elif heel == ROCK:
         if face == PAPER:
             player_win()

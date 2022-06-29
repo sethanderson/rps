@@ -16,7 +16,7 @@ STEVE_NAME = "Stone Cold Steve Austin"
 ROCK_NAME = 'Dwayne "The Rock" Johnson'
 
 PROMPT_USER = "Rock, paper, or scissors baby? "
-REMATCH_PROMPT = "Yes or no you candyass jabroni?"
+REMATCH_PROMPT = "Yes or no you candyass jabroni? "
 
 # Tie game
 def tie_game():
@@ -120,6 +120,15 @@ def ask_for_rematch(rematch):
     return rematch_choice.casefold()
 
 
+def player_win(winner="You"):
+    if winner == "You":
+        _you_win()
+    elif winner == ROCK_NAME:
+        _the_rock_wins()
+    elif winner == STEVE_NAME:
+        _steve_austin_wins()
+
+
 # want to see if you can make the whole game into a function
 def round1():
     winner = 0
@@ -152,12 +161,3 @@ def round1():
             else:
                 _the_rock_wins()
                 winner = ROCK_NAME
-
-
-def player_win(winner="You"):
-    if winner == "You":
-        _you_win()
-    elif winner == ROCK_NAME:
-        _the_rock_wins()
-    elif winner == STEVE_NAME:
-        _steve_austin_wins()
