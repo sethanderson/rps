@@ -7,6 +7,8 @@ from rps_helper import (
     the_rock_wins,
     ask_to_play_winner,
     show_player_results,
+    ask_for_rematch,
+    round1
 )
 
 # testicles = [1, 3, 5, 7, 45]
@@ -25,6 +27,7 @@ ROCK = "rock"
 PAPER = "paper"
 SCISSORS = "scissors"
 RPS = [ROCK, PAPER, SCISSORS]
+
 
 winner = 0
 
@@ -57,28 +60,36 @@ while winner == 0:
             the_rock_wins()
             winner = ROCK_NAME
 
-# SECOND MATCH! THIS ONE IS FOR THE BELT
 
+
+# SECOND MATCH! THIS ONE IS FOR THE BELT
+rematch = 'yes'
 face = ask_to_play_winner(winner)
 heel = random.choice(RPS)
 show_player_results(heel, winner, face)
 
-if heel.lower() == face.lower():
-    tie_game()
-elif heel.lower() == PAPER:
-    if face.lower() == SCISSORS:
-        you_win()
-    else:
-        print(f"{str(winner)} WINS!!!")
+while True:
+    if heel == face:
+        tie_game()
+    elif heel == PAPER:
+        if face.lower() == SCISSORS:
+            you_win()
+        else:
+            print(f"{str(winner)} WINS!!!")
 
-elif heel.lower() == SCISSORS:
-    if face.lower() == ROCK:
-        you_win()
-    else:
-        print(f"{str(winner)} WINS!!!")
+    elif heel == SCISSORS:
+        if face == ROCK:
+            you_win()
+        else:
+            print(f"{str(winner)} WINS!!!")
 
-elif heel.lower() == ROCK:
-    if face.lower() == PAPER:
-        you_win()
+    elif heel == ROCK:
+        if face == PAPER:
+            you_win()
+        else:
+            print(f"{str(winner)} WINS!!!")
+    rematch = ask_for_rematch(rematch)
+    if rematch =="yes":
+        continue
     else:
-        print(f"{str(winner)} WINS!!!")
+        break
