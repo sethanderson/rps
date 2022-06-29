@@ -21,9 +21,9 @@ STEVE_NAME = "Stone Cold Steve Austin"
 ROCK_NAME = 'Dwayne "The Rock" Johnson'
 
 # Game states
-ROCK = "Rock"
-PAPER = "Paper"
-SCISSORS = "Scissors"
+ROCK = "rock"
+PAPER = "paper"
+SCISSORS = "scissors"
 RPS = [ROCK, PAPER, SCISSORS]
 
 winner = 0
@@ -65,8 +65,8 @@ show_player_results(heel, winner, face)
 
 if heel.lower() == face.lower():
     tie_game()
-elif heel == PAPER:
-    if face == SCISSORS:
+elif heel.lower() == PAPER:
+    if face.lower() == SCISSORS:
         you_win()
     else:
         print(f"{str(winner)} WINS!!!")
