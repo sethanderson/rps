@@ -16,6 +16,7 @@ STEVE_NAME = "Stone Cold Steve Austin"
 ROCK_NAME = 'Dwayne "The Rock" Johnson'
 
 PROMPT_USER = "Rock, paper, or scissors baby? "
+WANT_REMATCH = "Want a rematch?"
 REMATCH_PROMPT = "Yes or no you candyass jabroni? "
 
 # Tie game
@@ -101,9 +102,7 @@ def _steve_austin_wins():
 
 def ask_to_play_winner(winner):
     print(f"Want to square off with {str(winner)}?")
-    user_choice = input(PROMPT_USER)
     print()  # adding additional space
-    return user_choice.casefold()
 
 
 def show_player_results(
@@ -113,11 +112,13 @@ def show_player_results(
     print(f"{player_2_name} picked: {str(player_2_choice)}!")
 
 
-def ask_for_rematch(rematch):
-    print("Want a rematch?")
-    rematch_choice = input(REMATCH_PROMPT)
-    print()  # extra space to make little old seth happy 8=====D
-    return rematch_choice.casefold()
+def ask_for_rematch():
+    print(WANT_REMATCH)
+    return _ask_for_input(REMATCH_PROMPT, ["yes", "no"])
+
+
+def ask_for_game_action(input_choices):
+    return _ask_for_input(PROMPT_USER, input_choices)
 
 
 def player_win(winner="You"):
@@ -127,6 +128,15 @@ def player_win(winner="You"):
         _the_rock_wins()
     elif winner == STEVE_NAME:
         _steve_austin_wins()
+
+
+def _ask_for_input(user_prompt, input_choices):
+    user_choice = input(user_prompt).casefold()
+    while user_choice not in input_choices:
+        print(f"You dumbass, you have to pick one of these: {', '.join(input_choices)}\n")
+        user_choice = input(user_prompt).casefold()
+
+    return user_choice
 
 
 # want to see if you can make the whole game into a function

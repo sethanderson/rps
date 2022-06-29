@@ -5,6 +5,7 @@ from rps_helper import (
     ask_to_play_winner,
     show_player_results,
     ask_for_rematch,
+    ask_for_game_action,
     player_win,
     ROCK_NAME,
     STEVE_NAME,
@@ -57,10 +58,12 @@ while winner == 0:
 # SECOND MATCH! THIS ONE IS FOR THE BELT
 rematch = "yes"
 face = ask_to_play_winner(winner)
-heel = random.choice(RPS)
-show_player_results(heel, winner, face)
 
 while True:
+    face = ask_for_game_action(RPS)
+    heel = random.choice(RPS)
+    show_player_results(heel, winner, face)
+
     if heel == face:
         tie_game()
     elif heel == PAPER:
@@ -78,7 +81,7 @@ while True:
             player_win()
         else:
             player_win(winner)
-    rematch = ask_for_rematch(rematch)
+    rematch = ask_for_rematch()
     if rematch == "yes":
         continue
     else:
