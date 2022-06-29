@@ -63,22 +63,22 @@ face = ask_to_play_winner(winner)
 heel = random.choice(RPS)
 show_player_results(heel, winner, face)
 
-if heel.casefold() == face.casefold():
+if heel.lower() == face.lower():
     tie_game()
-elif heel.casefold() == PAPER:
-    if face.casefold() == SCISSORS:
+elif heel == PAPER:
+    if face == SCISSORS:
         you_win()
     else:
         print(f"{str(winner)} WINS!!!")
 
-elif heel.casefold() == SCISSORS:
-    if face.casefold() == ROCK:
+elif heel == SCISSORS:
+    if face == ROCK:
         you_win()
     else:
         print(f"{str(winner)} WINS!!!")
 
-elif heel.casefold() == ROCK:
-    if face.casefold() == PAPER:
+elif heel == ROCK:
+    if face == PAPER:
         you_win()
     else:
         print(f"{str(winner)} WINS!!!")
