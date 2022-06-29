@@ -8,7 +8,22 @@ import random
 
 #print ("The randomly selected testicle is : " + str(random_teste))
 
-RPS = ["Rock", "Paper", "Scissors"]
+TIE = "tie!!\n"
+
+ROCK = "Rock"
+PAPER = "Paper"
+SCISSORS = "Scissors"
+
+STEVE_WINS = "STONE COLD WINS!!!\n"
+ROCK_WINS = "THE ROCK WINS!!!\n"
+
+STEVE_NAME = "Stone Cold Steve Austin"
+ROCK_NAME = 'Dwayne "The Rock" Johnson'
+
+PROMPT_USER = 'Rock, paper, or scissors baby? '
+YOU_WIN = "YOU WIN!!!\n"
+
+RPS = [ROCK, PAPER, SCISSORS]
 
 winner = 0
 
@@ -17,65 +32,60 @@ while winner == 0:
     stoneCold = random.choice(RPS)
 
 
-    print ("Dwayne the Rock Johnson picked: " +str(theRock)+"!")
-    print ("Stone Cold Steve Austin picked: " +str(stoneCold)+"!")
+    print (f"{ROCK_NAME} picked: {str(theRock)}!")
+    print (f"{STEVE_NAME} picked: {str(stoneCold)}!")
 
     if theRock == stoneCold:
-            print ("tie!!")
-    elif theRock == "Paper":
-        if stoneCold == "Scissors":
-                print ("STONE COLD WINS!!!")
-                winner = "Stone Cold Steve Austin"
+            print (TIE)
+    elif theRock == PAPER:
+        if stoneCold == SCISSORS:
+                print (STEVE_WINS)
+                winner = STEVE_NAME
         else:
-                print ("THE ROCK WINS!!!")
-                winner = 'Dwayne "The Rock" Johnson'
-    elif theRock == "Scissors":
-        if stoneCold == "Rock":
-                print ("STONE COLD WINS!!!")
-                winner = "Stone Cold Steve Austin"
+                print (ROCK_WINS)
+                winner = ROCK_NAME
+    elif theRock == SCISSORS:
+        if stoneCold == ROCK:
+                print (STEVE_WINS)
+                winner = STEVE_NAME
         else:
-                print ("THE ROCK WINS!!!")
-                winner = 'Dwayne "The Rock" Johnson'
-    elif theRock == "Rock":
-        if stoneCold == "Paper":
-                print ("STONE COLD WINS!!!")
-                winner = "Stone Cold Steve Austin"
+                print (ROCK_WINS)
+                winner = ROCK_NAME
+    elif theRock == ROCK:
+        if stoneCold == PAPER:
+                print (STEVE_WINS)
+                winner = STEVE_NAME
         else:
-                print ("THE ROCK WINS!!!")
-                winner = 'Dwayne "The Rock" Johnson'
+                print (ROCK_WINS)
+                winner = ROCK_NAME
 
 #SECOND MATCH! THIS ONE IS FOR THE BELT
-print ('want to square off with '+str(winner)+' ?')
-face = input('Rock, paper, or scissors baby?')
+print (f"Want to square off with {str(winner)}?")
+face = input(PROMPT_USER)
 heel = random.choice(RPS)
-print (str(winner)+' picks: '+str(heel)+'!!!')
+
+print (f"You picked: {str(face)}!")
+print (f"{str(winner)} picks: {str(heel)}!!!")
 
 if heel.casefold() == face.casefold():
-        print ("tie!!")
-elif heel.casefold() == "Paper":
-    if face.casefold() == "Scissors":
-            print ("YOU WIN!!!")
+        print (TIE)
+elif heel.casefold() == PAPER:
+    if face.casefold() == SCISSORS:
+            print (YOU_WIN)
             
     else:
-            print (str(winner)+"WINS!!!")
+            print (f"{str(winner)} WINS!!!")
             
-elif heel.casefold() == "Scissors":
-    if face.casefold() == "Rock":
-            print ("YOU WIN!!!")
-            
-    else:
-            print (str(winner)+"WINS!!!")
-            
-elif heel.casefold() == "Rock":
-    if face.casefold() == "Paper":
-            print ("YOU WIN!!!")
+elif heel.casefold() == SCISSORS:
+    if face.casefold() == ROCK:
+            print (YOU_WIN)
             
     else:
-            print (str(winner)+" WINS!!!")
+            print (f"{str(winner)} WINS!!!")
             
-
+elif heel.casefold() == ROCK:
+    if face.casefold() == PAPER:
+            print (YOU_WIN)
             
-
-
-
-
+    else:
+            print (f"{str(winner)} WINS!!!")
