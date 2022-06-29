@@ -71,14 +71,14 @@ elif heel.lower() == PAPER:
     else:
         print(f"{str(winner)} WINS!!!")
 
-elif heel == SCISSORS:
-    if face == ROCK:
+elif heel.lower() == SCISSORS:
+    if face.lower() == ROCK:
         you_win()
     else:
         print(f"{str(winner)} WINS!!!")
 
-elif heel == ROCK:
-    if face == PAPER:
+elif heel.lower() == ROCK:
+    if face.lower() == PAPER:
         you_win()
     else:
         print(f"{str(winner)} WINS!!!")
