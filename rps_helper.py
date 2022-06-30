@@ -1,23 +1,22 @@
-import random
-
-# Game states
-ROCK = "rock"
-PAPER = "paper"
-SCISSORS = "scissors"
-RPS = [ROCK, PAPER, SCISSORS]
-
 # Win conditions
+from rps_game_state import get_game_states
+
+
 TIE = "tie!!\n"
-STEVE_WINS = "STONE COLD WINS!!!\n"
-ROCK_WINS = "THE ROCK WINS!!!\n"
+STEVE_WINS = "        STONE COLD WINS!!!\n"
+ROCK_WINS = "        THE ROCK WINS!!!\n"
 YOU_WIN = "YOU WIN!!!\n"
 
 STEVE_NAME = "Stone Cold Steve Austin"
 ROCK_NAME = 'Dwayne "The Rock" Johnson'
 
-PROMPT_USER = "Rock, paper, or scissors baby? "
+rps_game = get_game_states()
+rps_choices = list(rps_game.keys())
+last_rps_choice = rps_choices.pop()
+PROMPT_USER = f"{', '.join(rps_choices)}, or {last_rps_choice}, baby? ".capitalize()
 WANT_REMATCH = "Want a rematch?"
 REMATCH_PROMPT = "Yes or no you candyass jabroni? "
+
 
 # Tie game
 def tie_game():
@@ -31,7 +30,6 @@ def _you_win():
 
 # The Rock Won
 def _the_rock_wins():
-    print(ROCK_WINS)
     print(
         """
         ⣶⣿⣾⣷⣷⣾⣿⣿⣿⠋⠀⠀⠀⢠⣾⣿⣿⣿⣶⣤⣤⡀⠀⠀⢀⠀⢹⣿⣿⣿
@@ -51,11 +49,11 @@ def _the_rock_wins():
         ⠓⠄⡀⠈⠢⠀⠀⠐⢤⣄⡀⠀⠀⠀⠀⠰⠀⠀⠀⠀⠀⠣⡄⠀⠀⠀⠀⠀⠀⠀
     """
     )
+    print(ROCK_WINS)
 
 
 # Steve Austin Won
 def _steve_austin_wins():
-    print(STEVE_WINS)
     print(
         """
         ⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⠟⠋⠉⠛⠛⠫⢍⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠿⠿⢿⣻⣿⣿⢿⠀⠀
@@ -98,6 +96,7 @@ def _steve_austin_wins():
         ⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣏⡀⣀⠄⣈⡀⡀⣄⢀⠀⢁⣿⣟⣻⣻⣛⣿⣻⣿⣿⣲⡶⣮⡿⡟⠖⢶⣾⣟⡷⢲⠶⠳⠴⢶⠆⣿⡿⠁
     """
     )
+    print(STEVE_WINS)
 
 
 def ask_to_play_winner(winner):
@@ -133,41 +132,9 @@ def player_win(winner="You"):
 def _ask_for_input(user_prompt, input_choices):
     user_choice = input(user_prompt).casefold()
     while user_choice not in input_choices:
-        print(f"You dumbass, you have to pick one of these: {', '.join(input_choices)}\n")
+        print(
+            f"You dumbass, you have to pick one of these: {', '.join(input_choices)}\n"
+        )
         user_choice = input(user_prompt).casefold()
 
     return user_choice
-
-
-# want to see if you can make the whole game into a function
-def round1():
-    winner = 0
-
-    while winner == 0:
-        the_rock = random.choice(RPS)
-        stone_cold = random.choice(RPS)
-        show_player_results(the_rock, ROCK_NAME, stone_cold, STEVE_NAME)
-
-        if the_rock == stone_cold:
-            tie_game()
-        elif the_rock == PAPER:
-            if stone_cold == SCISSORS:
-                _steve_austin_wins()
-                winner = STEVE_NAME
-            else:
-                _the_rock_wins()
-                winner = ROCK_NAME
-        elif the_rock == SCISSORS:
-            if stone_cold == ROCK:
-                _steve_austin_wins()
-                winner = STEVE_NAME
-            else:
-                _the_rock_wins()
-                winner = ROCK_NAME
-        elif the_rock == ROCK:
-            if stone_cold == PAPER:
-                _steve_austin_wins()
-                winner = STEVE_NAME
-            else:
-                _the_rock_wins()
-                winner = ROCK_NAME
