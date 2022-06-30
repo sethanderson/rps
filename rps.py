@@ -1,4 +1,3 @@
-import sys
 import random
 from rps_game_state import BEATS, get_game_states
 from rps_helper import (
