@@ -1,5 +1,5 @@
-from concurrent.futures import thread
 import random
+from rps_game_state import BEATS, get_game_states
 from rps_helper import (
     tie_game,
     ask_to_play_winner,
@@ -11,48 +11,21 @@ from rps_helper import (
     STEVE_NAME,
 )
 
-# testicles = [1, 3, 5, 7, 45]
 
-# print( "the complete list of testes is: " + str(testicles))
+RPS_GAME = get_game_states()
+RPS_CHOICES = list(RPS_GAME.keys())
 
-# random_teste = random.choice(testicles)
-
-# print ("The randomly selected testicle is : " + str(random_teste))
-
-# Game states
-ROCK = "rock"
-PAPER = "paper"
-SCISSORS = "scissors"
-RPS = [ROCK, PAPER, SCISSORS]
-
-
-winner = 0
-
-while winner == 0:
-    the_rock = random.choice(RPS)
-    stone_cold = random.choice(RPS)
+winner = ""
+while not winner:
+    the_rock, stone_cold = random.choice(RPS_CHOICES), random.choice(RPS_CHOICES)
     show_player_results(the_rock, ROCK_NAME, stone_cold, STEVE_NAME)
 
     if the_rock == stone_cold:
         tie_game()
-    elif the_rock == PAPER:
-        if stone_cold == SCISSORS:
-            winner = STEVE_NAME
-        else:
-            winner = ROCK_NAME
-        player_win(winner)
-    elif the_rock == SCISSORS:
-        if stone_cold == ROCK:
-            winner = STEVE_NAME
-        else:
-            winner = ROCK_NAME
-        player_win(winner)
-    elif the_rock == ROCK:
-        if stone_cold == PAPER:
-            winner = STEVE_NAME
-        else:
-            winner = ROCK_NAME
-        player_win(winner)
+        continue
+
+    winner = ROCK_NAME if stone_cold in RPS_GAME[the_rock][BEATS] else STEVE_NAME
+    player_win(winner)
 
 
 # SECOND MATCH! THIS ONE IS FOR THE BELT
@@ -60,29 +33,15 @@ rematch = "yes"
 face = ask_to_play_winner(winner)
 
 while True:
-    face = ask_for_game_action(RPS)
-    heel = random.choice(RPS)
+    face, heel = ask_for_game_action(RPS_CHOICES), random.choice(RPS_CHOICES)
     show_player_results(heel, winner, face)
 
     if heel == face:
         tie_game()
-    elif heel == PAPER:
-        if face.lower() == SCISSORS:
-            player_win()
-        else:
-            player_win(winner)
-    elif heel == SCISSORS:
-        if face == ROCK:
-            player_win()
-        else:
-            player_win(winner)
-    elif heel == ROCK:
-        if face == PAPER:
-            player_win()
-        else:
-            player_win(winner)
-    rematch = ask_for_rematch()
-    if rematch == "yes":
         continue
-    else:
+
+    player_win() if heel in RPS_GAME[face][BEATS] else player_win(winner)
+
+    rematch = ask_for_rematch()
+    if rematch == "no":
         break
